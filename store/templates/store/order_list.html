@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+    <h1>Order list</h1>
+
+    <ul>
+        {% for order in order_list %}
+            <li>
+                <a href="{% url 'store:order-detail' order.pk %}">{{ order }}</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

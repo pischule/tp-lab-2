@@ -1,0 +1,13 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <p><Strong>Buyer: </Strong> {{ order.buyer.username }}</p>
+    <p><Strong>Seller: </Strong> {{ order.product.seller }}</p>
+    <p><Strong>Product:</Strong> {{ order.product.title }} </p>
+    <p><Strong>Count:</Strong> {{ order.product.count }}</p>
+    <p><Strong>Price:</Strong> {{ order.product.price }}</p>
+    <p><Strong>Status:</Strong> {{ order.status }}</p>
+    <p><Strong>Placed at:</Strong> {{ order.placed_at }}</p>
+
+{% endblock %}
