@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 
 class User(AbstractUser):
@@ -47,12 +48,22 @@ class Seller(User):
 
 class Product(models.Model):
     title = models.CharField(max_length=255)
-    count = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=20, decimal_places=2)
     seller = models.ForeignKey(Seller, on_delete=models.SET_NULL, null=True)
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('store:product-detail', args=[str(self.id)])
+
+
+class ProductInstance(models.Model):
+    product = models.OneToOneField(Product, on_delete=models.SET_NULL, null=True)
+    count = models.PositiveIntegerField()
+
+    def __str__(self):
+        return str(self.product) + ' -- ' + str(self.count)
 
 
 class Order(models.Model):
@@ -60,10 +71,19 @@ class Order(models.Model):
         CREATED = 'CREATED', 'Created'
         DELIVERED = 'DELIVERED', 'Delivered'
 
-    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
     buyer = models.ForeignKey(Buyer, on_delete=models.SET_NULL, null=True)
     status = models.CharField(max_length=50, choices=Status.choices, default=Status.CREATED)
     placed_at = models.DateTimeField(auto_now=True)
 
+    @property
+    def total_price(self):
+        return sum([i.product.price * i.count for i in OrderItem.objects.filter(order_id=self.id)])
+
     def __str__(self):
-        return f'{self.product} - {self.buyer}'
+        return f'O:{self.id}'
+
+
+class OrderItem(models.Model):
+    order = models.ForeignKey(Order, on_delete=models.SET_NULL, null=True)
+    product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
+    count = models.PositiveIntegerField()

@@ -3,12 +3,25 @@
 {% block content %}
     <h1>Order list</h1>
 
-    <ul>
-        {% for order in order_list %}
-            <li>
-                <a href="{% url 'store:order-detail' order.pk %}">{{ order }}</a>
-            </li>
-        {% endfor %}
-    </ul>
+    <table class="table">
+    <tr>
+        <th>Order</th>
+        <th>Buyer</th>
+        <th>Placed at</th>
+        <th>Total price</th>
+        <th>Status</th>
+    </tr>
+    {% for order in order_list %}
+        <tr>
+            <td>
+            <a href="{% url 'store:order-detail' order.pk %}">{{ order }}</a>
+            </td>
+            <td>{{ order.buyer }}</td>
+            <td>{{ order.placed_at }}</td>
+            <td>{{ order.total_price }}</td>
+            <td>{{ order.status }}</td>
+        </tr>
+    {% endfor %}
+    </table>
 
 {% endblock %}
