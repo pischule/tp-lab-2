@@ -2,7 +2,8 @@
 
 ## Запущенный instance
 
-https://tp-lab-2.herokuapp.com/
+- https://tp-lab-2.herokuapp.com/
+- http://store.coolprojects.online
 
 ## Диаграммы
 
