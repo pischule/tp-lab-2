@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+
+    <table class="table">
+
+        <tr>
+            <th>Title</th>
+            <th>Price</th>
+        </tr>
+        {% for product in product_list %}
+        <tr>
+            <td><a href="{% url 'store:seller-product-update' product.id %}">{{ product.title }}</a></td>
+            <td>{{ product.price }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+
+    <button type="button" class="btn btn-primary" onclick="location.href='{%  url 'store:seller-product-create' %}'">Add new</button>
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Product instance list</h1>
+    <table class="table">
+        {% for pi in productinstance_list %}
+            <tr>
+                <td><a href="{% url 'store:seller-product-update' pi.id %}">{{ pi.product.title }}</a></td>
+                <td>{{ pi.product.price }}</td>
+                <td>{{ pi.count }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <button type="button" class="btn btn-primary"
+            onclick="location.href='{%  url 'store:seller-productinstance-create' %}'">Add new</button>
+
+{% endblock %}

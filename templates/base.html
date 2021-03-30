@@ -17,14 +17,27 @@
                 <ul class="sidebar-nav">
                     <li><a href="{% url 'store:index' %}">Home</a></li>
                     <li><a href="{% url 'store:catalog' %}">Catalog</a></li>
-                    <li><a href="{% url 'store:orders' %}">Orders</a></a></li>
+
+{#                    <li><a href="{% url 'store:orders' %}">Orders</a></li>#}
 
                     {% if user.is_authenticated %}
-                        <br>
+                        {% if user.user_type == 'b' %}
+                            <li><a href="{% url 'store:orders-buyer' %}">My orders</a></li>
+                        {% endif %}
+                        {% if user.user_type == 's' %}
+                            <li><a href="{% url 'store:seller-products' %}">My products</a></li>
+                            <li><a href="{% url 'store:seller-productinstances' %}">My instances</a></li>
+                        {% endif %}
+
+                    {% endif %}
+
+                    <br>
+                    {% if user.is_authenticated %}
                         <li>User: {{ user.get_username }}</li>
                         <li><a href="{% url 'logout' %}?next={{ request.path }}">Logout</a></li>
                     {% else %}
-                        <li><a href="{% url 'login' %}?next={{ request.path }}">Login</a></li>
+                        <li><a href="{% url 'signup' %}?next={{ request.path }}">Sign up</a></li>
+                        <li><a href="{% url 'login' %}?next={{ request.path }}">Log in</a></li>
                     {% endif %}
 
 
