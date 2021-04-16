@@ -14,3 +14,7 @@ https://drive.google.com/drive/folders/1ohmbabEa0AdgOPJHetOZmj0J6FkBLTZE?usp=sha
 
 1. `python manage.py migrate`
 2. `python manage.py runserver`
+
+## Если меняете модели, то перед коммитом
+
+1. `python manage.py makemigrations`
