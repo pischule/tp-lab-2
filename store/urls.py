@@ -18,5 +18,6 @@ urlpatterns = [
     path('seller/product-instances', views.SellerProductInstanceListView.as_view(), name='seller-productinstances'),
     path('seller/product-instance/create', views.SellerProductInstanceCreateView.as_view(), name='seller-productinstance-create'),
     path('seller/product-instance/<int:pk>/update', views.SellerProductInstanceUpdateView.as_view(), name='seller-productinstance-update'),
+    path('buyer/product-instance/<int:pk>/order', views.BuyerProductInstanceOrder.as_view(), name='user-order-product-instance')
 
 ]
