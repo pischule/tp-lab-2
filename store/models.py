@@ -1,5 +1,6 @@
 from django.db import models
 from django.urls import reverse
+from django.core.validators import MinValueValidator
 
 from accounts.models import User
 
@@ -25,7 +26,6 @@ class ProductInstance(models.Model):
 
     def get_absolute_url(self):
         return reverse("store:productinstance-detail", kwargs={"pk": self.pk})
-    
 
 
 class Order(models.Model):
@@ -37,14 +37,14 @@ class Order(models.Model):
     status = models.CharField(max_length=50, choices=Status.choices, default=Status.CREATED)
     placed_at = models.DateTimeField(auto_now=True)
     product = models.ForeignKey(Product, on_delete=models.SET_NULL, null=True)
-    count = models.PositiveIntegerField(default=1)
+    count = models.PositiveIntegerField(default=1, validators=[MinValueValidator(1)])
 
     @property
     def total_price(self):
         return self.product.price * self.count
 
     def __str__(self):
-        return f'O:{self.id}'
+        return f'{self.product.title}'
 
     def get_absolute_url(self):
-        return reverse('store:productinstance-detail', args=[str(self.id)])
+        return reverse('store:order-detail', args=[str(self.id)])

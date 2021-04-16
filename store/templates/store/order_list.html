@@ -5,7 +5,7 @@
 
     <table class="table">
     <tr>
-        <th>Order</th>
+        <th>Product</th>
         <th>Buyer</th>
         <th>Placed at</th>
         <th>Total price</th>
@@ -14,7 +14,7 @@
     {% for order in order_list %}
         <tr>
             <td>
-            <a href="{% url 'store:order-detail' order.pk %}">{{ order }}</a>
+            <a href="{% url 'store:product-detail' order.product.pk %}">{{ order.product.title }}</a>
             </td>
             <td>{{ order.buyer }}</td>
             <td>{{ order.placed_at }}</td>

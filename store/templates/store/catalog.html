@@ -9,6 +9,11 @@
         <th>Price</th>
         <th>Seller</th>
         <th>Count</th>
+
+        {% if user.user_type == 'b' %}
+        <th>Order</th>
+        {% endif %}
+
     </tr>
     {% for product_instance in productinstance_list %}
         <tr>
@@ -18,6 +23,11 @@
             <td>{{ product_instance.product.price }}</td>
             <td>{{ product_instance.product.seller}}</td>
             <td>{{ product_instance.count }}</td>
+
+            {% if user.user_type == 'b' %}
+            <td><a href="{% url 'store:user-order-product-instance' product_instance.pk  %}">Order</a></td>
+            {% endif %}
+
         </tr>
     {% endfor %}
     </table>

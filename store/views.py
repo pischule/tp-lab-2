@@ -96,3 +96,23 @@ class SellerProductInstanceUpdateView(generic.UpdateView):
     fields = ['product', 'count']
     template_name = 'store/seller_productinstance_form.html'
 
+
+class BuyerProductInstanceOrder(generic.CreateView):
+    model = Order
+    fields = ['count']
+
+    def form_valid(self, form):
+        product_instance = ProductInstance.objects.get(pk=self.kwargs['pk'])
+
+        if form.instance.count > product_instance.count:
+            form.instance.count = None
+            return super(BuyerProductInstanceOrder, self).form_invalid(form)
+
+        form.instance.buyer = self.request.user
+        form.instance.status = Order.Status.CREATED
+        form.instance.product = product_instance.product
+
+        product_instance.count -= form.instance.count
+        product_instance.save()
+
+        return super(BuyerProductInstanceOrder, self).form_valid(form)

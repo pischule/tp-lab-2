@@ -4,6 +4,9 @@
     <h1>Product list</h1>
 
 
+    {% if user.user_type == 'b' %}
+    {% endif %}
+
     <ul>
         {% for product in product_list %}
             <li>
