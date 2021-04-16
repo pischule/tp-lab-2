@@ -3,3 +3,4 @@
 **.pyc
 tp_lab_2/settings.py
 .vscode/*
+db.sqlite3
