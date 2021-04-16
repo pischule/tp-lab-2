@@ -1,2 +1,5 @@
 /venv/
 ./dp.sqlite3
+**.pyc
+tp_lab_2/settings.py
+.vscode/*
