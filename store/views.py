@@ -2,13 +2,14 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
 
-from .models import Product, Order, ProductInstance
+from .models import Product, Order, ProductInstance, User
 
 
 def index(request):
     context = {
         'num_products': Product.objects.count(),
         'num_orders': Order.objects.count(),
+        'num_users': User.objects.count(),
         'catalog_items': ProductInstance.objects.filter(count__gt=0).count(),
     }
 
