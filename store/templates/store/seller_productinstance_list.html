@@ -3,9 +3,14 @@
 {% block content %}
     <h1>Product instance list</h1>
     <table class="table">
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Count</th>
+            </tr>
         {% for pi in productinstance_list %}
             <tr>
-                <td><a href="{% url 'store:seller-product-update' pi.id %}">{{ pi.product.title }}</a></td>
+                <td><a href="{% url 'store:seller-productinstance-update' pi.id %}">{{ pi.product.title }}</a></td>
                 <td>{{ pi.product.price }}</td>
                 <td>{{ pi.count }}</td>
             </tr>

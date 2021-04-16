@@ -23,6 +23,10 @@ class ProductInstance(models.Model):
     def __str__(self):
         return str(self.product) + ' -- ' + str(self.count)
 
+    def get_absolute_url(self):
+        return reverse("store:productinstance-detail", kwargs={"pk": self.pk})
+    
+
 
 class Order(models.Model):
     class Status(models.TextChoices):

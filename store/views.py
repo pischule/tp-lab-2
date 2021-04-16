@@ -91,10 +91,8 @@ class SellerProductInstanceCreateView(generic.CreateView):
     template_name = 'store/seller_productinstance_form.html'
 
 
-class SellerProductInstanceUpdateView(generic.CreateView):
+class SellerProductInstanceUpdateView(generic.UpdateView):
     model = ProductInstance
     fields = ['product', 'count']
     template_name = 'store/seller_productinstance_form.html'
 
-class ProductInstanceDetailView(generic.DetailView):
-    model = ProductInstance

@@ -17,8 +17,6 @@ urlpatterns = [
     path('seller/product/<int:pk>/update', views.SellerEditProductView.as_view(), name='seller-product-update'),
     path('seller/product-instances', views.SellerProductInstanceListView.as_view(), name='seller-productinstances'),
     path('seller/product-instance/create', views.SellerProductInstanceCreateView.as_view(), name='seller-productinstance-create'),
-    path('seller/product-instance/<int:pk>/update', views.SellerProductInstanceCreateView.as_view(), name='seller-productinstance-create'),
+    path('seller/product-instance/<int:pk>/update', views.SellerProductInstanceUpdateView.as_view(), name='seller-productinstance-update'),
 
 ]
-
-
