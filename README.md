@@ -12,7 +12,5 @@ https://drive.google.com/drive/folders/1ohmbabEa0AdgOPJHetOZmj0J6FkBLTZE?usp=sha
 
 ## Как запустить локально
 
-Способ, который всегда работает
-
 1. `python manage.py migrate`
 2. `python manage.py runserver`
