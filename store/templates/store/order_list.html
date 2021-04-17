@@ -1,13 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h1>Order list</h1>
+    <h1>Orders</h1>
 
     <table class="table">
     <tr>
         <th>Product</th>
         <th>Buyer</th>
+        <th>Seller</th>
         <th>Placed at</th>
+        <th>Count</th>
         <th>Total price</th>
         <th>Status</th>
     </tr>
@@ -17,7 +19,9 @@
             <a href="{% url 'store:product-detail' order.product.pk %}">{{ order.product.title }}</a>
             </td>
             <td>{{ order.buyer }}</td>
+            <td>{{ order.product.seller }}</td>
             <td>{{ order.placed_at }}</td>
+            <td>{{ order.count }}</td>
             <td>{{ order.total_price }}</td>
             <td>{{ order.status }}</td>
         </tr>

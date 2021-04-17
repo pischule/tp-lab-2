@@ -1,6 +1,4 @@
-import os
-
-import django_heroku
+# import django_heroku
 
 """
 Django settings for tp_lab_2 project.
@@ -121,7 +119,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 AUTH_USER_MODEL = "accounts.User"
 

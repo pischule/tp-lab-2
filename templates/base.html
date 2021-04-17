@@ -27,6 +27,7 @@
                         {% if user.user_type == 's' %}
                             <li><a href="{% url 'store:seller-products' %}">My products</a></li>
                             <li><a href="{% url 'store:seller-productinstances' %}">My instances</a></li>
+                            <li><a href="{% url 'store:seller-sold-orders' %}">My orders</a></li>
                         {% endif %}
 
                     {% endif %}

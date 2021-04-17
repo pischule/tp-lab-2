@@ -80,7 +80,6 @@ class SellerEditProductView(generic.UpdateView):
 
 class SellerProductInstanceListView(generic.ListView):
     model = ProductInstance
-    template_name = 'store/seller_productinstance_list.html'
 
     def get_queryset(self):
         return ProductInstance.objects.filter(product__seller=self.request.user)
@@ -96,6 +95,14 @@ class SellerProductInstanceUpdateView(generic.UpdateView):
     model = ProductInstance
     fields = ['product', 'count']
     template_name = 'store/seller_productinstance_form.html'
+
+
+class SellerSoldOrders(generic.ListView):
+    model = Order
+    # template_name = 'store/seller_sold_orders.html'
+
+    def get_queryset(self):
+        return Order.objects.filter(product__seller=self.request.user)
 
 
 class BuyerProductInstanceOrder(generic.CreateView):
