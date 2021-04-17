@@ -1,4 +1,10 @@
-import django_heroku
+from pathlib import Path
+import os
+
+is_inside_heroku = 'HEROKU' in os.environ
+
+if is_inside_heroku:
+    import django_heroku
 
 """
 Django settings for tp_lab_2 project.
@@ -12,7 +18,6 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -56,8 +61,7 @@ ROOT_URLCONF = 'tp_lab_2.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -119,7 +123,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+if is_inside_heroku:
+    django_heroku.settings(locals())
 
 AUTH_USER_MODEL = "accounts.User"
 
