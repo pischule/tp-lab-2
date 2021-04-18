@@ -8,7 +8,7 @@
         <a href="{% url 'store:product-detail' order.product.pk %}">{{order.product.title}}</a>
     </p>
     <p><strong>Count:</strong> {{ order.count }} </p>
-
+    <p><strong>Status:</strong> {{ order.status }} </p>
     <p><strong>Total price:</strong> {{ order.total_price }}</p>
 
 {% endblock %}

@@ -25,7 +25,12 @@
             <td>{{ product_instance.count }}</td>
 
             {% if user.user_type == 'b' %}
-            <td><a href="{% url 'store:user-order-product-instance' product_instance.pk  %}">Order</a></td>
+            <td>
+            <button type="button" class="btn btn-outline-primary" onclick=location.href="{% url 'store:user-order-product-instance' product_instance.pk  %}">
+                <i class="bi bi-cart-dash"></i>
+            </button>
+            {% comment %} <td><a href="{% url 'store:user-order-product-instance' product_instance.pk  %}">Order</a></td> {% endcomment %}
+            </td>
             {% endif %}
 
         </tr>

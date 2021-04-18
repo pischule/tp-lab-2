@@ -1,8 +1,10 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import render
 from django.views import generic
+from django.urls import reverse_lazy
 
 from .models import Product, Order, ProductInstance, User
+from .forms import SellerCreateProductInstanceForm
 
 
 def index(request):
@@ -40,7 +42,7 @@ class OrderDetailView(generic.DetailView):
     model = Order
 
 
-class OrderBuyerListView(generic.ListView):
+class OrderBuyerListView(LoginRequiredMixin, generic.ListView):
     model = Order
 
     def get_queryset(self):
@@ -56,7 +58,7 @@ class OrderCreateView(LoginRequiredMixin, generic.CreateView):
         return super(OrderCreateView, self).form_valid(form)
 
 
-class SellerProductListView(generic.ListView):
+class SellerProductListView(LoginRequiredMixin, generic.ListView):
     model = Product
     template_name = 'store/seller_product_list.html'
 
@@ -64,48 +66,45 @@ class SellerProductListView(generic.ListView):
         return Product.objects.filter(seller=self.request.user)
 
 
-class SellerCreateProductView(generic.CreateView):
+class SellerCreateProductView(LoginRequiredMixin, generic.CreateView):
     fields = ['title', 'price']
     model = Product
+    success_url = reverse_lazy('store:seller-products')
 
     def form_valid(self, form):
         form.instance.seller = self.request.user
         return super(SellerCreateProductView, self).form_valid(form)
 
 
-class SellerEditProductView(generic.UpdateView):
+class SellerEditProductView(LoginRequiredMixin, generic.UpdateView):
     fields = ['title', 'price']
     model = Product
+    success_url = reverse_lazy('store:seller-products')
 
 
-class SellerProductInstanceListView(generic.ListView):
+class SellerProductInstanceListView(LoginRequiredMixin, generic.ListView):
     model = ProductInstance
+    template_name = 'store/seller_productinstance_list.html'
 
     def get_queryset(self):
         return ProductInstance.objects.filter(product__seller=self.request.user)
 
 
-class SellerProductInstanceCreateView(generic.CreateView):
+class SellerProductInstanceUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = ProductInstance
     fields = ['product', 'count']
     template_name = 'store/seller_productinstance_form.html'
+    success_url = reverse_lazy('store:seller-productinstances')
 
 
-class SellerProductInstanceUpdateView(generic.UpdateView):
-    model = ProductInstance
-    fields = ['product', 'count']
-    template_name = 'store/seller_productinstance_form.html'
-
-
-class SellerSoldOrders(generic.ListView):
+class SellerSoldOrders(LoginRequiredMixin, generic.ListView):
     model = Order
-    # template_name = 'store/seller_sold_orders.html'
 
     def get_queryset(self):
         return Order.objects.filter(product__seller=self.request.user)
 
 
-class BuyerProductInstanceOrder(generic.CreateView):
+class BuyerProductInstanceOrder(LoginRequiredMixin, generic.CreateView):
     model = Order
     fields = ['count']
 
@@ -124,3 +123,24 @@ class BuyerProductInstanceOrder(generic.CreateView):
         product_instance.save()
 
         return super(BuyerProductInstanceOrder, self).form_valid(form)
+
+
+class SellerProductInstanceCreateView(LoginRequiredMixin, generic.CreateView):
+    form_class = SellerCreateProductInstanceForm
+    template_name = 'store/seller_productinstance_form.html'
+    success_url = reverse_lazy('store:seller-productinstances')
+
+    def get_form_kwargs(self):
+        kwargs = super(SellerProductInstanceCreateView, self).get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+
+
+class SellerProductDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Product
+    success_url = reverse_lazy('store:seller-products')
+
+
+class SellerProductInstanceDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = ProductInstance
+    success_url = reverse_lazy('store:seller-productinstances')

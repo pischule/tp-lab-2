@@ -6,6 +6,7 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
 
     {% load static %}
 </head>
@@ -17,8 +18,6 @@
                 <ul class="sidebar-nav">
                     <li><a href="{% url 'store:index' %}">Home</a></li>
                     <li><a href="{% url 'store:catalog' %}">Catalog</a></li>
-
-{#                    <li><a href="{% url 'store:orders' %}">Orders</a></li>#}
 
                     {% if user.is_authenticated %}
                         {% if user.user_type == 'b' %}
