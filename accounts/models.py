@@ -6,10 +6,12 @@ from django.db import models
 class User(AbstractUser):
     BUYER = 'b'
     SELLER = 's'
+    DELIVERY = 'd'
 
     USER_TYPE_CHOICES = [
         (BUYER, 'buyer'),
-        (SELLER, 'seller')
+        (SELLER, 'seller'),
+        (DELIVERY, 'delivery')
     ]
 
     user_type = models.CharField(choices=USER_TYPE_CHOICES, max_length=1, default=BUYER)

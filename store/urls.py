@@ -22,4 +22,7 @@ urlpatterns = [
     path('seller/product-instance/<int:pk>/delete', views.SellerProductInstanceDeleteView.as_view(), name='seller-productinstance-delete'),
     path('buyer/product-instance/<int:pk>/order', views.BuyerProductInstanceOrder.as_view(), name='user-order-product-instance'),
     path('seller/orders', views.SellerSoldOrders.as_view(), name='seller-sold-orders'),
+    path('delivery/orders', views.DeliveryOrdersToDeliverList.as_view(), name='delivery-order-list'),
+    path('delivery/history/orders', views.DeliveryOrderHistory.as_view(), name='delivery-order-history-list'),
+    path('delivery/order/<int:pk>/update', views.DeliveryOrderUpdateStatus.as_view(), name='delivery-order-update')
 ]

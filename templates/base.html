@@ -17,18 +17,21 @@
             {% block sidebar %}
                 <ul class="sidebar-nav">
                     <li><a href="{% url 'store:index' %}">Home</a></li>
-                    <li><a href="{% url 'store:catalog' %}">Catalog</a></li>
 
                     {% if user.is_authenticated %}
                         {% if user.user_type == 'b' %}
-                            <li><a href="{% url 'store:orders-buyer' %}">My orders</a></li>
+                            <li><a href="{% url 'store:catalog' %}">Catalog</a></li>
+                            <li><a href="{% url 'store:orders-buyer' %}">Orders</a></li>
                         {% endif %}
                         {% if user.user_type == 's' %}
-                            <li><a href="{% url 'store:seller-products' %}">My products</a></li>
-                            <li><a href="{% url 'store:seller-productinstances' %}">My instances</a></li>
-                            <li><a href="{% url 'store:seller-sold-orders' %}">My orders</a></li>
+                            <li><a href="{% url 'store:seller-products' %}">Products</a></li>
+                            <li><a href="{% url 'store:seller-productinstances' %}">Instances</a></li>
+                            <li><a href="{% url 'store:seller-sold-orders' %}">Orders</a></li>
                         {% endif %}
-
+                        {% if user.user_type == 'd' %}
+                            <li><a href="{% url 'store:delivery-order-list' %}">To deliver</a></li>
+                            <li><a href="{% url 'store:delivery-order-history-list' %}">History</a></li>
+                        {% endif %}
                     {% endif %}
 
                     <br>

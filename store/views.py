@@ -144,3 +144,25 @@ class SellerProductDeleteView(LoginRequiredMixin, generic.DeleteView):
 class SellerProductInstanceDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = ProductInstance
     success_url = reverse_lazy('store:seller-productinstances')
+
+
+class DeliveryOrdersToDeliverList(LoginRequiredMixin, generic.ListView):
+    model = Order
+    template_name = 'store/delivery_orders_todeliver.html'
+
+    def get_queryset(self):
+        return Order.objects.filter(status=Order.Status.CREATED)
+
+
+class DeliveryOrderHistory(LoginRequiredMixin, generic.ListView):
+    model = Order
+    template_name = 'store/delivery_orders_history.html'
+
+    def get_queryset(self):
+        return Order.objects.filter(status=Order.Status.DELIVERED)
+
+
+class DeliveryOrderUpdateStatus(LoginRequiredMixin, generic.UpdateView):
+    fields = ['status']
+    model = Order
+    success_url = reverse_lazy('store:delivery-order-list')
