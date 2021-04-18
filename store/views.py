@@ -11,8 +11,11 @@ def index(request):
     context = {
         'num_products': Product.objects.count(),
         'num_orders': Order.objects.count(),
-        'num_users': User.objects.count(),
+        'num_user': User.objects.count(),
         'catalog_items': ProductInstance.objects.filter(count__gt=0).count(),
+        'num_buyer': User.objects.filter(user_type=User.BUYER).count(),
+        'num_seller': User.objects.filter(user_type=User.SELLER).count(),
+        'num_delivery': User.objects.filter(user_type=User.DELIVERY).count(),
     }
 
     return render(request, 'index.html', context=context)
