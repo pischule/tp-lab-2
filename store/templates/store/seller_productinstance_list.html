@@ -11,7 +11,7 @@
             </tr>
         {% for pi in productinstance_list %}
             <tr>
-                <td><a href="{% url 'store:seller-productinstance-update' pi.id %}">{{ pi.product.title }}</a></td>
+                <td><a href="{% url 'store:productinstance-detail' pi.id %}">{{ pi.product.title }}</a></td>
                 <td>{{ pi.product.price }}</td>
                 <td>{{ pi.count }}</td>
                 <td>
