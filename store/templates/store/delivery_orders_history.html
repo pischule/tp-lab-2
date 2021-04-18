@@ -8,8 +8,8 @@
         <th>Product</th>
         <th>Buyer</th>
         <th>Seller</th>
-        <th>Placed at</th>
-        <th>Count</th>
+        {% comment %} <th>Placed at</th> {% endcomment %}
+        {% comment %} <th>Count</th> {% endcomment %}
         <th>Total price</th>
     </tr>
     {% for order in order_list %}
@@ -19,8 +19,8 @@
             </td>
             <td>{{ order.buyer }}</td>
             <td>{{ order.product.seller }}</td>
-            <td>{{ order.placed_at }}</td>
-            <td>{{ order.count }}</td>
+            {% comment %} <td>{{ order.placed_at }}</td> {% endcomment %}
+            {% comment %} <td>{{ order.count }}</td> {% endcomment %}
             <td>{{ order.total_price }}</td>
         </tr>
     {% endfor %}
