@@ -1,4 +1,4 @@
-# tp-lab-2
+# Store Web App
 
 <p>
   <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Ftp-lab-2.herokuapp.com%2F">
