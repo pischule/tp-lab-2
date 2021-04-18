@@ -1,7 +1,6 @@
 # Store Web App
 
 <p>
-  <img alt="Website" src="https://img.shields.io/website?url=https%3A%2F%2Ftp-lab-2.herokuapp.com%2F">
   <img alt="Lines of code" src="https://img.shields.io/tokei/lines/github/pischule/tp-lab-2">
   <img alt="GitHub contributors" src="https://img.shields.io/github/contributors/pischule/tp-lab-2">
 </p>
