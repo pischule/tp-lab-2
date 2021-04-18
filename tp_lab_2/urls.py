@@ -20,7 +20,7 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('store/', include('store.urls')),
-    path('', RedirectView.as_view(url='store/', permanent = True)),
+    path('', RedirectView.as_view(url='store/', permanent=True)),
     path('accounts/', include('django.contrib.auth.urls')),
     path('accounts/', include('accounts.urls')),
 ]

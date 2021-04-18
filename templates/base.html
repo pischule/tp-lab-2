@@ -16,11 +16,12 @@
         <div class="col-sm-2">
             {% block sidebar %}
                 <ul class="sidebar-nav">
-                    <li><a href="{% url 'store:index' %}">Home</a></li>
+                    <li><a href="{% url 'store:catalog' %}">Catalog</a></li>
+                    <li><a href="{% url 'store:about' %}">About</a></li>
+
 
                     {% if user.is_authenticated %}
                         {% if user.user_type == 'b' %}
-                            <li><a href="{% url 'store:catalog' %}">Catalog</a></li>
                             <li><a href="{% url 'store:orders-buyer' %}">Orders</a></li>
                         {% endif %}
                         {% if user.user_type == 's' %}
