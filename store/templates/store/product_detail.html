@@ -1,11 +1,53 @@
 {% extends "base.html" %}
 
 {% block content %}
-
-    <h2>Product</h2>
-
-    <p><strong>Title:</strong> {{ product.title }} </p>
-    <p><strong>Price:</strong> {{ product.price }}</p>
-    <p><strong>Seller:</strong> {{ product.seller }}</p>
-
+    <div class="container-fluid" style="width: 80%; background-color: white">
+       <div class="ecommerce-gallery" data-mdb-zoom-effect="true" style="width: 100%; margin-bottom: 2%">
+           <div class="row py-3 shadow-5" style="box-shadow: 0 0 10px rgba(0,0,0,0.2)">
+               <div class="col-3 mt-1">
+                   <a href = {{ product.image_1}}>
+                   <img src= {{ product.image_1}}
+                           data-mdb-img="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/14a.jpg"
+                           alt="Gallery image 1"
+                           class="active w-100"
+                   />
+                   </a>
+               </div>
+               <div class="col-3 mt-1">
+                   <img
+                           src = {{ product.image_2}}
+                           data-mdb-img="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/12a.jpg"
+                           alt="Gallery image 2"
+                           class="w-100"
+                   />
+               </div>
+               <div class="col-3 mt-1">
+                   <img
+                           src = {{ product.image_3}}
+                           data-mdb-img="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/13a.jpg"
+                           alt="Gallery image 3"
+                           class="w-100"
+                   />
+               </div>
+               <div class="col-3 mt-1">
+                   <img
+                           src = {{ product.image_4}}
+                           data-mdb-img="https://mdbootstrap.com/img/Photos/Horizontal/E-commerce/Vertical/15a.jpg"
+                           alt="Gallery image 4"
+                           class="w-100"
+                   />
+               </div>
+           </div>
+       </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
+        <div class="p-4 mb-2 bg-light text-dark" style="width: 100%; height: 100%">
+            <h2>Product</h2>
+            <p><strong>Title:</strong> {{ product.title }} </p>
+            <p><strong>Price:</strong> {{ product.price }}</p>
+            <p><strong>Seller:</strong> {{ product.seller }}</p>
+            <p><strong>Description :</strong> {{ product.description }}</p>
+        </div>
+    </div>
 {% endblock %}

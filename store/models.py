@@ -9,6 +9,11 @@ class Product(models.Model):
     title = models.CharField(max_length=255)
     price = models.DecimalField(max_digits=20, decimal_places=2)
     seller = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    image_1 = models.CharField(max_length=500)
+    image_2 = models.CharField(max_length=500)
+    image_3 = models.CharField(max_length=500)
+    image_4 = models.CharField(max_length=500)
+    description = models.CharField(max_length=500)
 
     def __str__(self):
         return self.title
