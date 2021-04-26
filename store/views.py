@@ -70,7 +70,7 @@ class SellerProductListView(LoginRequiredMixin, generic.ListView):
 
 
 class SellerCreateProductView(LoginRequiredMixin, generic.CreateView):
-    fields = ['title', 'price']
+    fields = ['title', 'price', 'image_1', 'image_2', 'image_3', 'image_4', 'description']
     model = Product
     success_url = reverse_lazy('store:seller-products')
 
@@ -80,7 +80,7 @@ class SellerCreateProductView(LoginRequiredMixin, generic.CreateView):
 
 
 class SellerEditProductView(LoginRequiredMixin, generic.UpdateView):
-    fields = ['title', 'price']
+    fields = ['title', 'price', 'image_1', 'image_2', 'image_3', 'image_4', 'description']
     model = Product
     success_url = reverse_lazy('store:seller-products')
 
